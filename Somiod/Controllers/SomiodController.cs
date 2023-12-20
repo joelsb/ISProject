@@ -21,7 +21,7 @@ namespace Somiod.Controllers
             AppDomain.CurrentDomain.SetData("DataDirectory", projectPath);
 
             // Use |DataDirectory| in the connection string
-            string relativePath = @"|DataDirectory|\App_Data\DBProds.mdf";
+            string relativePath = @"|DataDirectory|\App_Data\DBSomiod.mdf";
             strDataConn = $@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename={relativePath};Integrated Security=True";
         }
 
