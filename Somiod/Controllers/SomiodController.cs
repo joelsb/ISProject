@@ -533,6 +533,150 @@ namespace Somiod.Controllers
                 return Ok(data);
             }
         }
-    
+        //GET SUBSCRIPTION
+        [Route("api/somiod/{appName:maxlength(50)}/{containerName:maxlength(50)}/{subscriptionName:maxlength(50)}")]
+        public IHttpActionResult GetSubscription(string appName, string containerName, string subscriptionName)
+        {
+            if (Request.Headers.Contains("somiod-discover") && Request.Headers.GetValues("somiod-discover").FirstOrDefault() == "subscription")
+            {
+                List<string> subscriptionNames = new List<string>();
+                SqlConnection conn = null;
+                try
+                {
+                    conn = new SqlConnection(strDataConn);
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT Name FROM Subscriptions WHERE Parent = (SELECT Id FROM Containers WHERE Name = @containerName AND Parent = (SELECT Id FROM Applications WHERE Name = @appName)) ORDER BY Id", conn);
+                    cmd.Parameters.AddWithValue("@appName", appName);
+                    cmd.Parameters.AddWithValue("@containerName", containerName);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        subscriptionNames.Add(reader.GetString(0));
+                    }
+                }
+                catch (Exception e)
+                {
+                    if (conn.State == System.Data.ConnectionState.Open) conn.Close();
+                    Console.WriteLine(e.Message);
+                    return null;
+                }
+                if (subscriptionNames.Count == 0)
+                {
+                    Console.WriteLine("There are no subscriptions in this container yet");
+                    return NotFound();
+                }
+                return Ok(subscriptionNames);
+            }
+            else
+            {
+                List<Subscription> subscriptions = new List<Subscription>();
+                SqlConnection conn = null;
+                try
+                {
+                    conn = new SqlConnection(strDataConn);
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM Subscriptions WHERE Parent = (SELECT Id FROM Containers WHERE Name = @containerName AND Parent = (SELECT Id FROM Applications WHERE Name = @appName)) ORDER BY Id", conn);
+                    cmd.Parameters.AddWithValue("@appName", appName);
+                    cmd.Parameters.AddWithValue("@containerName", containerName);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Subscription subscription = new Subscription
+                        {
+                            Id = reader.GetInt32(0),
+                            Name = reader.GetString(1),
+                            CreationDt = reader.GetDateTime(2),
+                            Parent = reader.GetInt32(3)
+                        };
+                        subscriptions.Add(subscription);
+                    }
+                }
+                catch (Exception e)
+                {
+                    if (conn.State == System.Data.ConnectionState.Open) conn.Close();
+                    Console.WriteLine(e.Message);
+                    return null;
+                }
+                if (subscriptions.Count == 0)
+                {
+                    Console.WriteLine("There are no subscriptions in this container yet");
+                    return NotFound();
+                }
+                return Ok(subscriptions);
+            }
+        }
+        // POST Subscription
+        [Route("api/somiod/{appName:maxlength(50)}/{containerName:maxlength(50)}")]
+        public IHttpActionResult PostSubscription(string appName, string containerName, Subscription subscription)
+        {
+            SqlConnection conn = null;
+            try
+            {
+                conn = new SqlConnection(strDataConn);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("INSERT INTO Subscriptions (Name, Parent) VALUES (@name, (SELECT Id FROM Containers WHERE Name = @containerName AND Parent = (SELECT Id FROM Applications WHERE Name = @appName)))", conn);
+                cmd.Parameters.AddWithValue("@name", subscription.Name);
+                cmd.Parameters.AddWithValue("@appName", appName);
+                cmd.Parameters.AddWithValue("@containerName", containerName);
+                int nrows = cmd.ExecuteNonQuery();
+                if (nrows > 0) return Ok("Created: " + subscription.Name);
+                else return NotFound();
+            }
+            catch (Exception e)
+            {
+                if (conn.State == System.Data.ConnectionState.Open) conn.Close();
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+        // PUT Subscription
+        [Route("api/somiod/{appName:maxlength(50)}/{containerName:maxlength(50)}/{subscriptionName:maxlength(50)}")]
+        public IHttpActionResult PutSubscription(string appName, string containerName, string subscriptionName, Subscription subscription)
+        {
+            SqlConnection conn = null;
+            try
+            {
+                conn = new SqlConnection(strDataConn);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("UPDATE Subscriptions SET Name = @newName WHERE Name = @subscriptionName AND Parent = (SELECT Id FROM Containers WHERE Name = @containerName AND Parent = (SELECT Id FROM Applications WHERE Name = @appName))", conn);
+                cmd.Parameters.AddWithValue("@newName", subscription.Name);
+                cmd.Parameters.AddWithValue("@subscriptionName", subscriptionName);
+                cmd.Parameters.AddWithValue("@appName", appName);
+                cmd.Parameters.AddWithValue("@containerName", containerName);
+                int nrows = cmd.ExecuteNonQuery();
+                if (nrows > 0) return Ok("Updated: " + subscriptionName);
+                else return NotFound();
+            }
+            catch (Exception e)
+            {
+                if (conn.State == System.Data.ConnectionState.Open) conn.Close();
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+        // DELETE Subscription
+        [Route("api/somiod/{appName:maxlength(50)}/{containerName:maxlength(50)}/{subscriptionName:maxlength(50)}")]
+        public IHttpActionResult DeleteSubscription(string appName, string containerName, string subscriptionName)
+        {
+            SqlConnection conn = null;
+            try
+            {
+                conn = new SqlConnection(strDataConn);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("DELETE FROM Subscriptions WHERE Name = @subscriptionName AND Parent = (SELECT Id FROM Containers WHERE Name = @containerName AND Parent = (SELECT Id FROM Applications WHERE Name = @appName))", conn);
+                cmd.Parameters.AddWithValue("@subscriptionName", subscriptionName);
+                cmd.Parameters.AddWithValue("@appName", appName);
+                cmd.Parameters.AddWithValue("@containerName", containerName);
+                int nrows = cmd.ExecuteNonQuery();
+                if (nrows > 0) return Ok("Deleted: " + subscriptionName);
+                else return NotFound();
+            }
+            catch (Exception e)
+            {
+                if (conn.State == System.Data.ConnectionState.Open) conn.Close();
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
     }
 }
