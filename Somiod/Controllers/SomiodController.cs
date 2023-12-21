@@ -28,7 +28,7 @@ namespace Somiod.Controllers
         //APPLICATION
         //GET Application
         [Route("api/somiod")]
-        public IHttpActionResult Get()
+        public IHttpActionResult GetApplication()
         {
             //Only the Application names
             if (Request.Headers.Contains("somiod-discover") && Request.Headers.GetValues("somiod-discover").FirstOrDefault() == "application")
@@ -194,7 +194,7 @@ namespace Somiod.Controllers
         //CONTAINER
         //GET Container
         [Route("api/somiod/{appName:maxlength(50)}")]
-        public IHttpActionResult Get(string appName)
+        public IHttpActionResult GetContainer(string appName)
         {
             //Only the containers names
             if (Request.Headers.Contains("somiod-discover") && Request.Headers.GetValues("somiod-discover").FirstOrDefault() == "container")
@@ -238,7 +238,7 @@ namespace Somiod.Controllers
                 {
                     conn = new SqlConnection(strDataConn);
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM Containers ORDER BY Id", conn);
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM Containers WHERE Parent = (SELECT Id FROM Applications WHERE Name = @appName) ORDER BY Id", conn);
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
@@ -290,19 +290,30 @@ namespace Somiod.Controllers
 
                 //get the container parent id in the database applications table using name = appName
                 //------------------
-                conn2 = new SqlConnection(strDataConn);
-                conn2.Open();
-                SqlCommand cmd2 = new SqlCommand("SELECT Id FROM Applications WHERE Name = @appName", conn2);
-                cmd2.Parameters.AddWithValue("@appName", appName);
-                SqlDataReader reader = cmd2.ExecuteReader();
                 int parentId = 0;
-                while (reader.Read())
+                try
                 {
-                    parentId = reader.GetInt32(0);
+                    conn2 = new SqlConnection(strDataConn);
+                    conn2.Open();
+                    SqlCommand cmd2 = new SqlCommand("SELECT Id FROM Applications WHERE Name = @appName", conn2);
+                    cmd2.Parameters.AddWithValue("@appName", appName);
+                    SqlDataReader reader = cmd2.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        parentId = reader.GetInt32(0);
+                    }
+                    conn2.Close();
+                }catch(Exception e1)
+                {
+                    if (conn2.State == System.Data.ConnectionState.Open) conn2.Close();
+                    Console.WriteLine(e1.Message);
+                    return null;
                 }
-                conn2.Close();
+                finally
+                {
+                    cmd.Parameters.AddWithValue("@parent", parentId);
+                }
                 //------------------
-                cmd.Parameters.AddWithValue("@parent", parentId);
 
                 cmd.CommandType = System.Data.CommandType.Text;
 
@@ -382,7 +393,7 @@ namespace Somiod.Controllers
         //GET Subscribe and Data names
         //Get all the content in the container
         [Route("api/somiod/{appName:maxlength(50)}/{containerName:maxlength(50)}")]
-        public IHttpActionResult Get(string appName, string containerName)
+        public IHttpActionResult GetDataAndSubscriptions(string appName, string containerName)
         {
             //Only the data names
             if (Request.Headers.Contains("somiod-discover") && Request.Headers.GetValues("somiod-discover").FirstOrDefault() == "data")
@@ -459,79 +470,85 @@ namespace Somiod.Controllers
         //DATA TODO
         //GET Data
         [Route("api/somiod/{appName:maxlength(50)}/{containerName:maxlength(50)}/{dataName:maxlength(50)}")]
-        public IHttpActionResult Get(string appName, string containerName, string dataName)
+        public IHttpActionResult GetData(string appName, string containerName, string dataName)
         {
-            //Only the data names
-            if (Request.Headers.Contains("somiod-discover") && Request.Headers.GetValues("somiod-discover").FirstOrDefault() == "data")
-            {
-                List<string> dataNames = new List<string>();
-                SqlConnection conn = null;
-
-                try
-                {
-                    conn = new SqlConnection(strDataConn);
-                    conn.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT Name FROM Data WHERE Parent = (SELECT Id FROM Containers WHERE Name = @containerName AND Parent = (SELECT Id FROM Applications WHERE Name = @appName)) ORDER BY Id", conn);
-                    cmd.Parameters.AddWithValue("@appName", appName);
-                    cmd.Parameters.AddWithValue("@containerName", containerName);
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    while (reader.Read())
-                    {
-                        dataNames.Add(reader.GetString(0));
-                    }
-                }
-                catch (Exception e)
-                {
-                    if (conn.State == System.Data.ConnectionState.Open) conn.Close();
-                    Console.WriteLine(e.Message);
-                    return null;
-                }
-                if (dataNames.Count == 0)
-                {
-                    Console.WriteLine("There is no data in this container yet");
-                    return NotFound();
-                }
-                return Ok(dataNames);
-            }
             //All the content in the data
-            else
+            Data data = new Data();
+            SqlConnection conn = null;
+            data.Id = -1;
+
+            try
             {
-                List<Data> data = new List<Data>();
-                SqlConnection conn = null;
+                conn = new SqlConnection(strDataConn);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Data WHERE Name=@dataName", conn);
+                cmd.Parameters.AddWithValue("@dataName", dataName);
+                SqlDataReader reader = cmd.ExecuteReader();
 
-                try
+                if (reader.Read())
                 {
-                    conn = new SqlConnection(strDataConn);
-                    conn.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM Data ORDER BY Id", conn);
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    while (reader.Read())
-                    {
-                        Data dataObj = new Data
-                        {
-                            Id = reader.GetInt32(0),
-                            Name = reader.GetString(1),
-                            CreationDt = reader.GetDateTime(2),
-                            Parent = reader.GetInt32(3)
-                        };
-                        data.Add(dataObj);
-                    }
+                    data.Id = reader.GetInt32(0);
+                    data.Name = reader.GetString(1);
+                    data.Content = reader.GetString(2);
+                    data.CreationDt = reader.GetDateTime(3);
+                    data.Parent = reader.GetInt32(4);
                 }
-                catch (Exception e)
-                {
-                    if (conn.State == System.Data.ConnectionState.Open) conn.Close();
-                    Console.WriteLine(e.Message);
-                    return null;
-                }
-                if (data.Count == 0)
-                {
-                    Console.WriteLine("There is no data in this container yet");
-                    return NotFound();
-                }
-                return Ok(data);
             }
+            catch (Exception e)
+            {
+                if (conn.State == System.Data.ConnectionState.Open) conn.Close();
+                Console.WriteLine(e.Message);
+                return null;
+            }
+            if (data.Id == -1)
+            {
+                Console.WriteLine("There is no data with the name: " + dataName);
+                return NotFound();
+            }
+            return Ok(data);
+
+        }
+        //SUBSCRIPTION
+        //GET Subscription
+        [Route("api/somiod/{appName:maxlength(50)}/{containerName:maxlength(50)}/{subscriptionName:maxlength(50)}")]
+        public IHttpActionResult GetSubscription(string appName, string containerName, string subscriptionName)
+        {
+            //All the content in the subscription
+            Subscription subscription = new Subscription();
+            SqlConnection conn = null;
+            subscription.Id = -1;
+
+            try
+            {
+                conn = new SqlConnection(strDataConn);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Subscriptions WHERE Name=@subscriptionName", conn);
+                cmd.Parameters.AddWithValue("@subscriptionName", subscriptionName);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    subscription.Id = reader.GetInt32(0);
+                    subscription.Name = reader.GetString(1);
+                    subscription.CreationDt = reader.GetDateTime(3);
+                    subscription.Parent = reader.GetInt32(4);
+                    subscription.Event = reader.GetString(5);
+                    subscription.Endpoint = reader.GetString(6);
+                }
+            }
+            catch (Exception e)
+            {
+                if (conn.State == System.Data.ConnectionState.Open) conn.Close();
+                Console.WriteLine(e.Message);
+                return null;
+            }
+            if (subscription.Id == -1)
+            {
+                Console.WriteLine("There is no subscription with the name: " + subscriptionName);
+                return NotFound();
+            }
+            return Ok(subscription);
+
         }
     
     }
