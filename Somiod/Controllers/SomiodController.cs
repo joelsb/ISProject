@@ -89,7 +89,7 @@ namespace Somiod.Controllers
                 {
                     if (conn.State == System.Data.ConnectionState.Open) conn.Close();
                     Console.WriteLine(e.Message);
-                    return null;
+                    return InternalServerError(e);
                 }
                 if (applications.Count == 0)
                 {
@@ -131,7 +131,7 @@ namespace Somiod.Controllers
             {
                 if (conn.State == System.Data.ConnectionState.Open) conn.Close();
                 Console.WriteLine(e.Message);
-                return null;
+                return InternalServerError(e);
             }
         }
         //PUT Application
@@ -161,7 +161,7 @@ namespace Somiod.Controllers
             {
                 if (conn.State == System.Data.ConnectionState.Open) conn.Close();
                 Console.WriteLine(e.Message);
-                return null;
+                return InternalServerError(e);
             }
         }
 
@@ -188,7 +188,7 @@ namespace Somiod.Controllers
             {
                 if (conn.State == System.Data.ConnectionState.Open) conn.Close();
                 Console.WriteLine(e.Message);
-                return null;
+                return InternalServerError(e);
             }
         }
         //CONTAINER
@@ -440,7 +440,7 @@ namespace Somiod.Controllers
         //DATA TODO
         //GET containers datas
         [Route("api/somiod/{appName:maxlength(50)}/{containerName:maxlength(50)}/data")]
-        public IHttpActionResult GetData(string appName, string containerName)
+        public IHttpActionResult GetDatas(string appName, string containerName)
         {
             //All the content in the Container
             List<Data> datas = new List<Data>();
@@ -490,9 +490,61 @@ namespace Somiod.Controllers
             return Ok(datas);
 
         }
+        //GET containers datas
+        [Route("api/somiod/{appName:maxlength(50)}/{containerName:maxlength(50)}/data/{dataName:maxlength(50)}")]
+        public IHttpActionResult GetData(string appName, string containerName, string dataName)
+        {
+            //All the content in the Container
+            List<Data> datas = new List<Data>();
+            SqlConnection conn = null;
 
+            try
+            {
+                conn = new SqlConnection(strDataConn);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Data WHERE Parent = (SELECT Id FROM Containers WHERE Name = @containerName AND Parent = (SELECT Id FROM Applications WHERE Name = @appName)) AND Name = @dataName ORDER BY Id", conn);
+                cmd.Parameters.AddWithValue("@containerName", containerName); // Add the parameter here
+                cmd.Parameters.AddWithValue("@dataName", dataName); // Add the parameter here
+                cmd.Parameters.AddWithValue("@appName", appName); // Add the parameter here
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                    Data data = new Data
+                    {
+                        Id = reader.GetInt32(0),
+                        Name = reader.GetString(1),
+                        Content = reader.GetString(2),
+                        Creation_dt = reader.GetDateTime(3),
+                        Parent = reader.GetInt32(4),
+
+                    };
+                    datas.Add(data);
+                }
+            }
+            catch (Exception e)
+            {
+                if (conn.State == System.Data.ConnectionState.Open) conn.Close();
+                Console.WriteLine(e.Message);
+                return InternalServerError(e);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            if (datas.Count == 0)
+            {
+                Console.WriteLine("There is no datas in this container yet");
+                return NotFound();
+            }
+
+            return Ok(datas);
+
+        }
         //POST Data
-        [Route("api/somiod/{appName:maxlength(50)}/{containerName:maxlength(50)}")]
+        [Route("api/somiod/{appName:maxlength(50)}/{containerName:maxlength(50)}/data")]
         public IHttpActionResult PostData(string containerName, Data data)
         {
             data.Creation_dt = DateTime.Now;
@@ -554,7 +606,7 @@ namespace Somiod.Controllers
             }
         }
         //PUT Data
-        [Route("api/somiod/{appName:maxlength(50)}/{containerName:maxlength(50)}/{dataName:maxlength(50)}")]
+        [Route("api/somiod/{appName:maxlength(50)}/{containerName:maxlength(50)}/data/{dataName:maxlength(50)}")]
         public IHttpActionResult PutData(string containerName, string dataName, Data data)
         {
             data.Creation_dt = DateTime.Now;
@@ -591,7 +643,7 @@ namespace Somiod.Controllers
             }
         }
         //DELETE Data
-        [Route("api/somiod/{appName:maxlength(50)}/{containerName:maxlength(50)}/{dataName:maxlength(50)}")]
+        [Route("api/somiod/{appName:maxlength(50)}/{containerName:maxlength(50)}/data/{dataName:maxlength(50)}")]
         public IHttpActionResult DeleteData(string appName, string dataName)
         {
             SqlConnection conn = null;
