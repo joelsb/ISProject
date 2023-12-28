@@ -1,4 +1,5 @@
-﻿using Somiod.Models;
+﻿using Newtonsoft.Json.Linq;
+using Somiod.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -101,10 +102,24 @@ namespace Somiod.Controllers
         }
         //POST Application
         [Route("api/somiod")]
-        public IHttpActionResult PostApplication(Application app)
+        public IHttpActionResult PostApplication([FromBody] Application app)
         {
+            
             //Post of an application
+            if (!ModelState.IsValid)
+            {
+                // Log ModelState errors
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
+                foreach (var error in errors)
+                {
+                    Console.WriteLine(error.ErrorMessage);
+                }
+
+                return BadRequest(ModelState);
+            }
             SqlConnection conn = null;
+            string requestBody = Request.Content.ReadAsStringAsync().Result;
+            
             app.CreationDt = DateTime.Now;
             try
             {
@@ -136,16 +151,20 @@ namespace Somiod.Controllers
         }
         //PUT Application
         [Route("api/somiod/{appName:maxlength(50)}")]
-        public IHttpActionResult PutApplication(string appName, Application app)
+        public IHttpActionResult PutApplication(string appName,[FromBody] Application app)
         {
             SqlConnection conn = null;
+            
+            app.CreationDt=DateTime.Now;
+            
             try
             {
                 conn = new SqlConnection(strDataConn);
                 conn.Open();
 
-                SqlCommand cmd = new SqlCommand("Update Applications SET Name=@name, Creation_dt=@creation_dt WHERE Id=@id", conn);
+                SqlCommand cmd = new SqlCommand("Update Applications SET Name=@name, Creation_dt=@creation_dt WHERE Name=@nameOrigin", conn);
 
+                cmd.Parameters.AddWithValue("@nameOrigin", appName);
                 cmd.Parameters.AddWithValue("@name", app.Name);
                 cmd.Parameters.AddWithValue("@creation_dt", app.CreationDt);
 
@@ -164,7 +183,7 @@ namespace Somiod.Controllers
                 return InternalServerError(e);
             }
         }
-
+        
         //DELETE Application
         [Route("api/somiod/{appName:maxlength(50)}")]
         public IHttpActionResult DeleteApplication(string appName)
@@ -177,12 +196,14 @@ namespace Somiod.Controllers
 
                 SqlCommand cmd = new SqlCommand("DELETE FROM Applications WHERE Name=@name", conn);
                 cmd.Parameters.AddWithValue("@name", appName);
-
+                
                 cmd.CommandType = System.Data.CommandType.Text;
 
                 int nrows = cmd.ExecuteNonQuery();
-                if (nrows > 0) return Ok("Deleted: " + appName);
-                else return NotFound();
+                if (nrows > 0) 
+                    return Ok("Deleted: " + appName);
+                else
+                    return BadRequest("App does not exists");
             }
             catch (Exception e)
             {
@@ -271,10 +292,23 @@ namespace Somiod.Controllers
         }
         //POST Container
         [Route("api/somiod/{appName:maxlength(50)}")]
-        public IHttpActionResult PostContainer(string appName, Container container)
+        public IHttpActionResult PostContainer(string appName,[FromBody] Container container)
         {
+
             //Post of an application
+            if (!ModelState.IsValid)
+            {
+                // Log ModelState errors
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
+                foreach (var error in errors)
+                {
+                    Console.WriteLine(error.ErrorMessage);
+                }
+
+                return BadRequest(ModelState);
+            }
             SqlConnection conn = null;
+            string requestBody = Request.Content.ReadAsStringAsync().Result;
             SqlConnection conn2 = null;
             container.CreationDt = DateTime.Now;
             try
@@ -335,20 +369,63 @@ namespace Somiod.Controllers
 
         //PUT Container
         [Route("api/somiod/{appName:maxlength(50)}/{containerName:maxlength(50)}")]
-        public IHttpActionResult PutContainer(string appName, string containerName, Container container)
+        public IHttpActionResult PutContainer(string appName, string containerName,[FromBody] Container container)
         {
+            if (!ModelState.IsValid)
+            {
+                // Log ModelState errors
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
+                foreach (var error in errors)
+                {
+                    Console.WriteLine(error.ErrorMessage);
+                }
+
+                return BadRequest(ModelState);
+            }
             SqlConnection conn = null;
+            string requestBody = Request.Content.ReadAsStringAsync().Result;
+            SqlConnection conn2 = null;
+            container.CreationDt = DateTime.Now;
             try
             {
                 conn = new SqlConnection(strDataConn);
                 conn.Open();
 
-                SqlCommand cmd = new SqlCommand("Update Containers SET Name=@name, Creation_dt=@creation_dt, Parent=@parent WHERE Id=@id", conn);
+                SqlCommand cmd = new SqlCommand("Update Containers SET Name=@name, Creation_dt=@creation_dt, Parent=@parent WHERE Name=@nameOrigin", conn);
 
-                cmd.Parameters.AddWithValue("@id", container.Id);
+                //string formattedDate = app.Creation_dt.ToString("yyyy-MM-dd HH:mm:ss");
+                //TODO: check if the date is in the correct format
+                cmd.Parameters.AddWithValue("@nameOrigin", containerName);
                 cmd.Parameters.AddWithValue("@name", container.Name);
-                cmd.Parameters.AddWithValue("@creation_dt", container.CreationDt);
-                cmd.Parameters.AddWithValue("@parent", container.Parent);
+                cmd.Parameters.Add("@creation_dt", SqlDbType.DateTime).Value = container.CreationDt;
+
+                //get the container parent id in the database applications table using name = appName
+                //------------------
+                int parentId = 0;
+                try
+                {
+                    conn2 = new SqlConnection(strDataConn);
+                    conn2.Open();
+                    SqlCommand cmd2 = new SqlCommand("SELECT Id FROM Applications WHERE Name = @appName", conn2);
+                    cmd2.Parameters.AddWithValue("@appName", appName);
+                    SqlDataReader reader = cmd2.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        parentId = reader.GetInt32(0);
+                    }
+                    conn2.Close();
+                }
+                catch (Exception e1)
+                {
+                    if (conn2.State == System.Data.ConnectionState.Open) conn2.Close();
+                    Console.WriteLine(e1.Message);
+                    return null;
+                }
+                finally
+                {
+                    cmd.Parameters.AddWithValue("@parent", parentId);
+                }
+                //------------------
 
                 cmd.CommandType = System.Data.CommandType.Text;
 
@@ -364,6 +441,58 @@ namespace Somiod.Controllers
                 Console.WriteLine(e.Message);
                 return InternalServerError(e);
             }
+            //SqlConnection conn = null;
+            //return Ok(container.Name);
+            //try
+            //{
+            //    conn = new SqlConnection(strDataConn);
+            //    conn.Open();
+            //    SqlConnection conn2 = null;
+            //    SqlCommand cmd = new SqlCommand("Update Containers SET Name=@name, Creation_dt=@creation_dt, Parent=@parent WHERE Name=@nameOrigin", conn);
+
+                
+            //    cmd.Parameters.AddWithValue("@name", container.Name);
+            //    cmd.Parameters.AddWithValue("@nameOrigin", containerName);
+            //    cmd.Parameters.AddWithValue("@creation_dt", container.CreationDt);
+            //    int parentId = 0;
+            //    try
+            //    {
+            //        conn2 = new SqlConnection(strDataConn);
+            //        conn2.Open();
+            //        SqlCommand cmd2 = new SqlCommand("SELECT Id FROM Applications WHERE Name = @appName", conn2);
+            //        cmd2.Parameters.AddWithValue("@appName", appName);
+            //        SqlDataReader reader = cmd2.ExecuteReader();
+            //        while (reader.Read())
+            //        {
+            //            parentId = reader.GetInt32(0);
+            //        }
+            //        conn2.Close();
+            //    }
+            //    catch (Exception e1)
+            //    {
+            //        if (conn2.State == System.Data.ConnectionState.Open) conn2.Close();
+            //        Console.WriteLine(e1.Message);
+            //        return null;
+            //    }
+            //    finally
+            //    {
+            //        cmd.Parameters.AddWithValue("@parent", parentId);
+            //    }
+
+            //    cmd.CommandType = System.Data.CommandType.Text;
+
+            //    int nrows = cmd.ExecuteNonQuery();
+            //    conn.Close();
+
+            //    if (nrows > 0) return Ok(container);
+            //    else return NotFound();
+            //}
+            //catch (Exception e)
+            //{
+            //    if (conn.State == System.Data.ConnectionState.Open) conn.Close();
+            //    Console.WriteLine(e.Message);
+            //    return InternalServerError(e);
+            //}
         }
 
         //DELETE Container
