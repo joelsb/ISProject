@@ -6,23 +6,26 @@ using System.Drawing;
 using System.IO; //Stream
 using System.Linq;
 using System.Net; //HttpWebRequest
+using System.Net.NetworkInformation;
 using System.Runtime.ConstrainedExecution;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
 using System.Xml;
+using System.Xml.Serialization;
 using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
 using Application = Somiod.Models.Application;
 using Container = Somiod.Models.Container;
 using Subscription = Somiod.Models.Subscription;
 
+
 namespace App_clienntA
 {
     public partial class ClientA : Form
     {
-        string baseURL = @"http://localhost:50611/api/somiod";
 
         List<Application> applications = new List<Application>();
         Application app;
@@ -33,8 +36,10 @@ namespace App_clienntA
         List<Subscription> subscriptions = new List<Subscription>();
         Subscription subscription;
 
+        const String STR_CHANNEL_NAME = "";
+
         MqttClient mClient = new MqttClient(IPAddress.Parse("127.0.0.1")); //OR use the broker hostname
-        String[] mStrSubscription = { "TEST" }; //Subscription
+        String[] mStrSubscription = { STR_CHANNEL_NAME }; //Subscription
 
 
         public ClientA()
@@ -43,244 +48,575 @@ namespace App_clienntA
         }
 
 
+        public class Utf8StringWriter : StringWriter
+        {
+            public override Encoding Encoding => Encoding.UTF8;
+        }
+
+        // ...
+
+
+
+        //private void DELApp(object sender, EventArgs e)
+        //{
+        //    Application app = new Application { Name = textBoxAppName.Text };
+        //    if (app == null)
+        //    {
+        //        // Log or display an error message
+        //        richTextBoxShowApp.Text = "Error: Application object is null.";
+        //        return; // exit the method to avoid further issues
+        //    }
+
+
+        //    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(baseURL +"/"+ app.Name);
+        //    request.Method = "DELETE";
+        //    request.ContentType = @"application/xml";
+        //    try
+        //    {
+        //        long length = 0;
+        //        using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+        //        {
+        //            length = response.ContentLength;
+        //        }
+        //        comboBoxParent.DataSource = GETAllAppList();
+        //    }
+        //    catch (WebException ex)
+        //    {
+        //        // Log exception and throw as for GET example above
+        //        MessageBox.Show(ex.Message +  "App does not exists");
+        //    }
+        //}
+
+        //static string ShowApplicationInfo(Application app)
+        //{
+        //    return string.Format("{0} : \t{1} \t{2} \t{3}", app.Id, app.Name, app.CreationDt);
+        //}
+
+        //private void POSTNewContainer(object sender, EventArgs e)
+        //{
+
+        //    XmlSerializer xmlSerializer = new XmlSerializer(typeof(Container), "http://schemas.datacontract.org/2004/07/Somiod.Models");
+
+        //    // Create a new Application object
+
+        //    Container container = new Container()
+        //    {
+        //        Name = textBoxContainerName.Text
+        //    };
+
+        //    // Check if app is null (this should not happen based on the above initialization)
+        //    string name_aux = container.Name;
+        //    bool atendeRequisitos = !string.IsNullOrEmpty(name_aux) && char.IsLetter(name_aux[0]);
+        //    if (!atendeRequisitos)
+        //    {
+        //        // Log or display an error message
+        //        richTextShowContainer.Text = "Error: Container object is null or start with invalid character.";
+        //        return; // exit the method to avoid further issues
+        //    }
+
+        //    string xmlContract;
+
+        //    using (StringWriter stringWriter = new Utf8StringWriter()) // Use Utf8StringWriter instead of StringWriter
+        //    {
+        //        // Use an XmlSerializerNamespaces to specify the namespace
+        //        XmlSerializerNamespaces namespaces = new XmlSerializerNamespaces();
+
+        //        xmlSerializer.Serialize(stringWriter, container);
+
+        //        xmlContract = stringWriter.ToString();
+
+        //    }
+
+
+
+        //    // Send the HTTP POST request
+        //    POSTandPUT("POST", baseURL+"/"+comboBoxParent.Text, xmlContract);
+        //    richTextShowContainer.Text = container.Name + ":Adicionada com sucesso ";
+        //}
+
+        //private void UPDATEContainer(object sender, EventArgs e)
+        //{
+        //    Container container = new Container();
+        //    container.Id = -1;
+        //        textBoxContainerName.Text = container.Name;
+        //    container.CreationDt = DateTime.Now;
+        //    app.Id = container.Parent;
+
+        //    var bodyStream = new StreamReader(HttpContext.Current.Request.InputStream);
+        //    string xmlContract = bodyStream.ReadToEnd();
+
+        //    POSTandPUT("PUT", baseURL + $"/{container.Id}", xmlContract);
+        //    richTextShowContainer.Text = "xnl contract: " + xmlContract + Environment.NewLine;
+        //}
+
+        //private void DELContainer(object sender, EventArgs e)
+        //{
+        //    Container container = new Container { Name = textBoxContainerName.Text };
+        //    if (container == null)
+        //    {
+        //        // Log or display an error message
+        //        richTextShowContainer.Text = "Error: Application object is null.";
+        //        return; // exit the method to avoid further issues
+        //    }
+
+
+        //    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(baseURL + "/" + comboBoxParent.Text + "/" + container.Name);
+        //    request.Method = "DELETE";
+        //    request.ContentType = @"application/xml";
+        //    try
+        //    {
+        //        long length = 0;
+        //        using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+        //        {
+        //            length = response.ContentLength;
+        //        }
+
+        //    }
+        //    catch (WebException ex)
+        //    {
+        //        // Log exception and throw as for GET example above
+        //        MessageBox.Show(ex.Message + "Container does not exists");
+        //    }
+        //}
+
+
+
+        //static string ShowContainernInfo(Container container)
+        //{
+        //    return string.Format("{0} : \t{1} \t{2} \t{3} \t{4}", container.Id, container.Name, container.CreationDt, container.Parent);
+        //}
+
+        //private void GETAllContainer(object sender, EventArgs e)
+        //{
+        //    if (comboBoxParent.Text == string.Empty)
+        //    {
+        //        richTextShowContainer.Text = "Error: Application object is null.";
+        //    }
+        //    else
+        //    {
+        //        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(baseURL+"/"+ comboBoxParent.Text);
+        //        request.Method = "GET";
+        //        request.ContentType = @"application/xml";
+        //        try
+        //        {
+        //            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+        //            {
+        //                using (Stream responseStream = response.GetResponseStream())
+        //                {
+        //                    XmlDocument xmlDoc = new XmlDocument();
+        //                    xmlDoc.Load(responseStream);
+
+        //                    // Get the content within the <name> tags
+        //                    XmlNodeList nameNodes = xmlDoc.GetElementsByTagName("Name");
+        //                    List<string> names = new List<string>();
+        //                    foreach (XmlNode node in nameNodes)
+        //                    {
+        //                        names.Add(node.InnerText);
+
+        //                    }
+        //                    // Display the names in the rich text box
+        //                    richTextShowContainer.Text = string.Join(",\n", names);
+
+        //                }
+        //            }
+        //        }
+        //        catch (WebException ex)
+        //        {
+        //            // Log exception and throw as for GET example above
+        //            MessageBox.Show(ex.Message + "Não existem containers nessa app");
+        //        }
+        //    }
+        //}
+
+
+        //private void POSTNewSubcription(object sender, EventArgs e)
+        //{
+
+        //    Subscription subscription = new Subscription();
+        //    subscription.Id = 7;
+        //    subscription.Name = textBoxAppName.Text;
+        //    subscription.CreationDt = DateTime.Now;
+        //    subscription.Parent = container.Id;
+
+
+
+        //    var bodyStream = new StreamReader(HttpContext.Current.Request.InputStream);
+        //    string xmlContract = bodyStream.ReadToEnd();
+
+
+        //    POSTandPUT("POST", baseURL, xmlContract);
+
+        //    SubscribeTextBox.Text = "xnl contract: " + xmlContract + Environment.NewLine;
+
+        //}
+
+
+        //private void POSTandPUT(string method, string url, string xmlContract)
+        //{
+        //    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+        //    request.Method = method; //"POST" or "PUT"
+
+        //    System.Text.UTF8Encoding encoding = new System.Text.UTF8Encoding();
+
+        //    // Adiciona a declaração XML manualmente ao início do XMLContract
+        //    string xmlWithDeclaration = $"{xmlContract}";
+
+        //    Byte[] byteArray = encoding.GetBytes(xmlWithDeclaration);
+        //    request.ContentLength = byteArray.Length;
+        //    request.ContentType = @"application/xml";
+
+        //    using (Stream dataStream = request.GetRequestStream())
+        //    {
+        //        dataStream.Write(byteArray, 0, byteArray.Length);
+
+        //    }
+
+        //    long length = 0;
+
+        //    try
+        //    {
+
+        //        using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+        //        {
+        //            length = response.ContentLength;
+        //        }
+        //    }
+        //    catch (WebException ex)
+        //    {
+        //        // Log exception and throw as for GET example above
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //}
+
+
+        //private string Get(string URL)
+        //{
+        //    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(URL);
+        //    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+
+        //    string content = string.Empty;
+        //    using (Stream stream = response.GetResponseStream())
+        //    {
+        //        using (StreamReader sr = new StreamReader(stream))
+        //        {
+        //            content = sr.ReadToEnd();
+        //        }
+        //    }
+        //    return content;
+        //}
+
+        //void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
+        //{
+        //    SubscribeTextBox.BeginInvoke((MethodInvoker)delegate
+        //    {
+        //        SubscribeTextBox.AppendText(Encoding.UTF8.GetString(e.Message) + Environment.NewLine);
+        //    });
+
+        //}
+
+        //private void Subscribe(object sender, EventArgs e)
+        //{
+        //    mClient.Connect(Guid.NewGuid().ToString());
+        //    if (!mClient.IsConnected)
+        //    {
+        //        MessageBox.Show("Error connecting to broker...");
+        //        return;
+        //    }
+
+        //    //This client's subscription operation id done 
+        //    mClient.MqttMsgPublishReceived += client_MqttMsgPublishReceived;
+
+
+        //    //Subscribe 
+        //    byte[] qosLevels = { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE };//QoS
+        //    mClient.Subscribe(mStrSubscription, qosLevels);
+
+
+        //    if (mClient.IsConnected)
+        //        lblStatusA.Text = "Connected";
+        //    else
+        //        lblStatusA.Text = "Disconnected";
+
+        //}
+
+        //private void Send(object sender, EventArgs e)
+        //{
+
+        //    if (!mClient.IsConnected)
+        //    {
+        //        MessageBox.Show("Application is disconnected");
+        //        return;
+        //    }
+
+
+
+        //    /*if (!ValidateUserInfo())
+        //    {
+        //        MessageBox.Show("Invalid User Info");
+        //        return;
+        //    }*/
+
+
+        //    string Name = textBoxAppName.Text;
+        //    DateTime DateTime = DateTime.Now;
+
+        //    String strMsg = SubscribeTextBox.Text;
+        //    if (strMsg.Trim().Length <= 0)
+        //    {
+        //        MessageBox.Show("Invalid message");
+        //        return;
+        //    }
+
+        //    String strMsgToSend = Name + "|" + DateTime + "|" + strMsg;
+
+
+        //    mClient.Publish(STR_CHANNEL_NAME, Encoding.UTF8.GetBytes(strMsgToSend));
+
+        //    textBoxAppName.Text = "";
+        //    textBoxAppName.Focus();
+
+        //}
+
+
+
+        //private List<string> GETAllContainerList(string parent)
+        //{
+        //    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(baseURL+ "/" + parent);
+        //    request.Method = "GET";
+        //    request.ContentType = @"application/xml";
+        //    try
+        //    {
+        //        using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+        //        {
+        //            using (Stream responseStream = response.GetResponseStream())
+        //            {
+        //                XmlDocument xmlDoc = new XmlDocument();
+        //                xmlDoc.Load(responseStream);
+
+        //                // Get the content within the <name> tags
+        //                XmlNodeList nameNodes = xmlDoc.GetElementsByTagName("Name");
+        //                List<string> names = new List<string>();
+        //                foreach (XmlNode node in nameNodes)
+        //                {
+        //                    names.Add(node.InnerText);
+
+        //                }
+        //                // Display the names in the rich text box
+        //                return names;
+
+        //            }
+        //        }
+        //    }
+        //    catch (WebException ex)
+        //    {
+        //        // Log exception and throw as for GET example above
+        //        return null;
+        //    }
+
+        //}
+        private List<string> GETAllAppList()
+        {
+            XmlDocument doc = Network.GET(Network.baseUrl);
+            // Get the content within the <name> tags
+            XmlNodeList nameNodes = doc.GetElementsByTagName("Name");
+            List<string> names = new List<string>();
+            foreach (XmlNode node in nameNodes)
+            {
+                names.Add(node.InnerText);
+            }
+            // Display the names in the rich text box
+            return names;
+
+        }
+        private void populateApps()
+        {
+            listBoxApps.Enabled = false;
+            listBoxApps.Items.Clear();
+            List<string> apps = GETAllAppList();
+            foreach (string app in apps)
+            {
+                listBoxApps.Items.Add(app);
+            }
+            listBoxApps.SelectedIndex = 0;
+            listBoxApps.Enabled = true;
+        }
+        private List<string> GETAllContainerList(string name)
+        {
+            XmlDocument doc = Network.GET(Network.baseUrl + "/" + name);
+            // Get the content within the <name> tags
+            if (doc == null) { return new List<string>(); }
+            XmlNodeList nameNodes = doc.GetElementsByTagName("Name");
+            List<string> names = new List<string>();
+            foreach (XmlNode node in nameNodes)
+            {
+                names.Add(node.InnerText);
+            }
+            // Display the names in the rich text box
+            return names;
+
+        }
+        private void populateContainersListBox()
+        {
+            listBoxContainers.Enabled = false;
+            listBoxContainers.Items.Clear();
+            string name = listBoxApps.Items[listBoxApps.SelectedIndex].ToString();
+            List<string> containers = GETAllContainerList(name);
+            foreach (string container in containers)
+            {
+                listBoxContainers.Items.Add(container);
+            }
+            if (listBoxContainers.Items.Count > 0)
+            {
+                listBoxContainers.SelectedIndex = 0;
+            }
+            listBoxContainers.Enabled = true;
+        }
         private void ClientA_Load(object sender, EventArgs e)
         {
-
-            mClient.Connect(Guid.NewGuid().ToString());
-            if (!mClient.IsConnected)
-            {
-                MessageBox.Show("Error connecting to broker...");
-                return;
-            }
-
-            //This client's subscription operation id done 
-            mClient.MqttMsgSubscribed += null;
-
-
-            //Subscribe 
-            byte[] qosLevels = { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE };//QoS
-            mClient.Subscribe(mStrSubscription, qosLevels);
+            populateApps();
         }
 
-        private void POSTNewApp(object sender, EventArgs e)
-        {
-            Application app = new Application();
-            app.Id = -1;
-            app.Name = textBoxName.Text;
-            app.CreationDt = DateTime.Now;
-
-
-            var bodyStream = new StreamReader(HttpContext.Current.Request.InputStream);
-            string xmlContract = bodyStream.ReadToEnd();
-
-
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(xmlContract);
-
-            POSTandPUT("POST", baseURL, xmlContract);
-
-            textBoxOutput.Text = "xnl contract: " + xmlContract + Environment.NewLine;
-            /*
-            System.Text.UTF8Encoding encoding = new UTF8Encoding();
-            byte[] byteArray = encoding.GetBytes(xml);
-
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(baseURI);
-            request.Method = "post"; //add new
-            request.ContentLength = byteArray.Length;
-            request.ContentType = @"application/xnl";
-
-            Stream data = request.GetRequestStream();
-            data.Write(byteArray, 0, byteArray.Length);
-
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            MessageBox.Show(response.ContentLength.ToString());
-            response.Close();*/
-
-        }
-
-        private void UPDATEApp(object sender, EventArgs e)
-        {
-            Application app = new Application();
-            textBoxName.Text = app.Name;
-            app.CreationDt = DateTime.Now;
-
-
-            var bodyStream = new StreamReader(HttpContext.Current.Request.InputStream);
-            string xmlContract = bodyStream.ReadToEnd();
-
-
-
-            POSTandPUT("PUT", baseURL + $"/{app.Name}", xmlContract);
-
-            textBoxOutput.Text = "xnl contract: " + xmlContract + Environment.NewLine;
-
-        }
-        private void DELApp(object sender, EventArgs e)
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(app.Name);
-            request.Method = "delete";
-            request.ContentType = @"application/xml";
-
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            MessageBox.Show(response.StatusCode.ToString());
-            response.Close();
         }
 
-        static string ShowApplicationInfo(Application app)
-        {
-            return string.Format("{0} : \t{1} \t{2} \t{3}", app.Id, app.Name, app.CreationDt);
-        }
+        //private void UpdateContainer_Click(object sender, EventArgs e)
+        //{
+        //    XmlSerializer xmlSerializer = new XmlSerializer(typeof(Container), "http://schemas.datacontract.org/2004/07/Somiod.Models");
+        //    Application app = new Application()
+        //    {
+        //        Name = comboBoxParent.Text,
+        //    };
+        //    Container container = new Container
+        //    {
+        //        Name = textBoxContainerName.Text,
+        //    };
+        //    string name_aux = container.Name;
+        //    bool atendeRequisitos = !string.IsNullOrEmpty(name_aux) && char.IsLetter(name_aux[0]);
 
 
-        private void GETAllApp(object sender, EventArgs e)
-        {
-            string content = Get(baseURL);
-            richTextBoxShowApp.Text = "";
-
-            applications = applications;
-            foreach (Application item in applications)
-            {
-                richTextBoxShowApp.AppendText(ShowApplicationInfo(item) + Environment.NewLine);
-            }
-
-        }
-
-        private void POSTNewContainer(object sender, EventArgs e)
-        {
-
-            Container container = new Container();
-            container.Id = -1;
-            container.Name = textBoxName.Text;
-            container.CreationDt = DateTime.Now;
-            container.Parent = app.Id;
+        //    // Check if app is null (this should not happen based on the above initialization)
+        //    if (!atendeRequisitos)
+        //    {
+        //        // Log or display an error message
+        //        richTextShowContainer.Text = "Error: Container object is null or start with invalid character.";
+        //        return; // exit the method to avoid further issues
+        //    }
+        //    Container containerUpdate = new Container
+        //    {
+        //        Name = textBoxUpdateNameContainer.Text,
+        //    };
+        //    name_aux = containerUpdate.Name;
+        //    atendeRequisitos = !string.IsNullOrEmpty(name_aux) && char.IsLetter(name_aux[0]);
 
 
+        //    // Check if app is null (this should not happen based on the above initialization)
+        //    if (!atendeRequisitos)
+        //    {
+        //        // Log or display an error message
+        //        richTextShowContainer.Text = "Error: Application update object is null or start with invalid character.";
+        //        return; // exit the method to avoid further issues
+        //    }
+        //    string xmlContract;
 
-            var bodyStream = new StreamReader(HttpContext.Current.Request.InputStream);
-            string xmlContract = bodyStream.ReadToEnd();
+        //    using (StringWriter stringWriter = new Utf8StringWriter()) // Use Utf8StringWriter instead of StringWriter
+        //    {
+        //        // Use an XmlSerializerNamespaces to specify the namespace
+        //        XmlSerializerNamespaces namespaces = new XmlSerializerNamespaces();
 
+        //        xmlSerializer.Serialize(stringWriter, containerUpdate);
 
-            POSTandPUT("POST", baseURL, xmlContract);
+        //        xmlContract = stringWriter.ToString();
 
-            textBoxOutput.Text = "xnl contract: " + xmlContract + Environment.NewLine;
-        }
+        //    }
 
-        private void UPDATEContainer(object sender, EventArgs e)
-        {
-            Container container = new Container();
-            container.Id = -1;
-            textBoxName.Text = container.Name;
-            container.CreationDt = DateTime.Now;
-            app.Id = container.Parent;
+        //    POSTandPUT("PUT", baseURL + "/" + app.Name + "/"+ container.Name, xmlContract);
+        //    comboBoxParent.DataSource = GETAllAppList();
 
-            var bodyStream = new StreamReader(HttpContext.Current.Request.InputStream);
-            string xmlContract = bodyStream.ReadToEnd();
-
-            POSTandPUT("PUT", baseURL + $"/{container.Id}", xmlContract);
-            textBoxOutput.Text = "xnl contract: " + xmlContract + Environment.NewLine;
-        }
-
-        private void DELContainer(object sender, EventArgs e)
+            
+        //}
+         
+        private void comboBoxParentChange_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(container.Name);
-            request.Method = "delete";
-            request.ContentType = @"application/xml";
-
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            MessageBox.Show(response.StatusCode.ToString());
-            response.Close();
         }
 
-        static string ShowContainernInfo(Container container)
-        {
-            return string.Format("{0} : \t{1} \t{2} \t{3} \t{4}", container.Id, container.Name, container.CreationDt,container.Parent);
-        }
-
-        private void GETAllContainer(object sender, EventArgs e)
-        {
-            string content = Get(baseURL);
-            richTextShowContainer.Text = "";
-
-            //Container = Containers;
-            foreach (Container item in containers)
-            {
-                richTextShowContainer.AppendText(ShowContainernInfo(item) + Environment.NewLine);
-            }
-
-        }
-
-
-        private void POSTNewSubcription(object sender, EventArgs e)
+        private void label1_Click(object sender, EventArgs e)
         {
 
-            Subscription subscription = new Subscription();
-            subscription.Id = -1;
-            subscription.Name = textBoxName.Text;
-            subscription.CreationDt = DateTime.Now;
-            subscription.Parent = container.Id;
-
-
-
-            var bodyStream = new StreamReader(HttpContext.Current.Request.InputStream);
-            string xmlContract = bodyStream.ReadToEnd();
-
-
-            POSTandPUT("POST", baseURL, xmlContract);
-
-            textBoxOutput.Text = "xnl contract: " + xmlContract + Environment.NewLine;
-
         }
 
-
-        private void POSTandPUT(string method, string url, string xmlContract)
+        private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-            request.Method = method; //"POST" or "PUT"
-
-            System.Text.UTF8Encoding encoding = new System.Text.UTF8Encoding();
-            Byte[] byteArray = encoding.GetBytes(xmlContract);
-
-            request.ContentLength = byteArray.Length;
-            request.ContentType = @"application/xml";
-
-            using (Stream dataStream = request.GetRequestStream())
-            {
-                dataStream.Write(byteArray, 0, byteArray.Length);
-            }
-            long length = 0;
-            try
-            {
-                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-                {
-                    length = response.ContentLength;
-                    MessageBox.Show(length.ToString());
-                }
-            }
-            catch (WebException ex)
-            {
-                // Log exception and throw as for GET example above
-                MessageBox.Show(ex.Message);
-            }
+            populateApps();
         }
 
-
-        private string Get(string URL)
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(URL);
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-
-            string content = string.Empty;
-            using (Stream stream = response.GetResponseStream())
-            {
-                using (StreamReader sr = new StreamReader(stream))
-                {
-                    content = sr.ReadToEnd();
-                }
-            }
-            return content;
+            string name = listBoxApps.Items[listBoxApps.SelectedIndex].ToString();
+            FormApps formApps = new FormApps(name);
+            formApps.ShowDialog();
+            populateApps();
         }
 
+        private void listBoxApps_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            populateContainersListBox();
+        }
+
+        private void buttonCreateApps_Click(object sender, EventArgs e)
+        {
+            FormApps formApps = new FormApps();
+            formApps.ShowDialog();
+            populateApps();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string name = listBoxApps.Items[listBoxApps.SelectedIndex].ToString();
+            Network.DELETE($"{Network.baseUrl}/{name}");
+            populateApps();
+        }
+
+        private void refreshToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            populateContainersListBox();
+        }
+
+        private void editToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            string name = listBoxContainers.Items[listBoxContainers.SelectedIndex].ToString();
+            string appName = listBoxApps.Items[listBoxApps.SelectedIndex].ToString();
+            FormContainers formContainers = new FormContainers(appName, name);
+            formContainers.ShowDialog();
+            populateContainersListBox();
+        }
+
+        private void contextMenuStripContainer_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void listBoxContainers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonCreateContainer_Click(object sender, EventArgs e)
+        {
+            string appName = listBoxApps.Items[listBoxApps.SelectedIndex].ToString();
+            FormContainers formContainers = new FormContainers(appName);
+            formContainers.ShowDialog();
+            populateContainersListBox();
+        }
+
+        private void deleteToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            string name = listBoxContainers.Items[listBoxContainers.SelectedIndex].ToString();
+            string appName = listBoxApps.Items[listBoxApps.SelectedIndex].ToString();
+            Network.DELETE($"{Network.baseUrl}/{appName}/{name}");
+            populateApps();
+        }
     }
 }
