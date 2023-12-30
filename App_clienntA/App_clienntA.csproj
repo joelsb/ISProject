@@ -56,10 +56,29 @@
     <Compile Include="ClientA.Designer.cs">
       <DependentUpon>ClientA.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormApps.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormApps.Designer.cs">
+      <DependentUpon>FormApps.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormContainers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormContainers.Designer.cs">
+      <DependentUpon>FormContainers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Network.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ClientA.resx">
       <DependentUpon>ClientA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormApps.resx">
+      <DependentUpon>FormApps.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormContainers.resx">
+      <DependentUpon>FormContainers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -85,13 +104,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Somiod\Somiod.csproj">
       <Project>{5592aeda-6917-4e69-8c07-a56aaa3138b3}</Project>
       <Name>Somiod</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

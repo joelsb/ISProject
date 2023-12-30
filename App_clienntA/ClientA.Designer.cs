@@ -28,229 +28,184 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.Button button2;
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClientA));
-            this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBoxAppName = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.richTextShowContainer = new System.Windows.Forms.RichTextBox();
-            this.button9 = new System.Windows.Forms.Button();
-            this.lblStatus = new System.Windows.Forms.Label();
-            this.button10 = new System.Windows.Forms.Button();
-            this.SubscribeTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.lblStatusA = new System.Windows.Forms.Label();
-            this.button11 = new System.Windows.Forms.Button();
-            this.comboBoxParent = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.richTextBoxShowApp = new System.Windows.Forms.RichTextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBoxContainerName = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBoxUpdateNameApp = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBoxUpdateNameContainer = new System.Windows.Forms.TextBox();
-            this.UpdateContainer = new System.Windows.Forms.Button();
-            button2 = new System.Windows.Forms.Button();
+            this.listBoxApps = new System.Windows.Forms.ListBox();
+            this.contextMenuStripApp = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonCreateApps = new System.Windows.Forms.Button();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.listBoxContainers = new System.Windows.Forms.ListBox();
+            this.buttonCreateContainer = new System.Windows.Forms.Button();
+            this.listBoxSubscriptions = new System.Windows.Forms.ListBox();
+            this.buttonCreateSubscription = new System.Windows.Forms.Button();
+            this.contextMenuStripContainer = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.refreshToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStripApp.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
+            this.contextMenuStripContainer.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // button2
-            // 
-            resources.ApplyResources(button2, "button2");
-            button2.Name = "button2";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += new System.EventHandler(this.UPDATEApp);
-            // 
-            // button1
-            // 
-            resources.ApplyResources(this.button1, "button1");
-            this.button1.Name = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.POSTNewApp);
             // 
             // label1
             // 
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            // 
-            // textBoxAppName
-            // 
-            resources.ApplyResources(this.textBoxAppName, "textBoxAppName");
-            this.textBoxAppName.Name = "textBoxAppName";
-            // 
-            // button3
-            // 
-            resources.ApplyResources(this.button3, "button3");
-            this.button3.Name = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.POSTNewContainer);
-            // 
-            // button4
-            // 
-            resources.ApplyResources(this.button4, "button4");
-            this.button4.Name = "button4";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.POSTNewSubcription);
-            // 
-            // button6
-            // 
-            resources.ApplyResources(this.button6, "button6");
-            this.button6.Name = "button6";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.DELApp);
-            // 
-            // button7
-            // 
-            resources.ApplyResources(this.button7, "button7");
-            this.button7.Name = "button7";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.GETAllApp);
-            // 
-            // button8
-            // 
-            resources.ApplyResources(this.button8, "button8");
-            this.button8.Name = "button8";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.DELContainer);
-            // 
-            // richTextShowContainer
-            // 
-            resources.ApplyResources(this.richTextShowContainer, "richTextShowContainer");
-            this.richTextShowContainer.Name = "richTextShowContainer";
-            // 
-            // button9
-            // 
-            resources.ApplyResources(this.button9, "button9");
-            this.button9.Name = "button9";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.GETAllContainer);
-            // 
-            // lblStatus
-            // 
-            resources.ApplyResources(this.lblStatus, "lblStatus");
-            this.lblStatus.Name = "lblStatus";
-            // 
-            // button10
-            // 
-            resources.ApplyResources(this.button10, "button10");
-            this.button10.Name = "button10";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.Subscribe);
-            // 
-            // SubscribeTextBox
-            // 
-            resources.ApplyResources(this.SubscribeTextBox, "SubscribeTextBox");
-            this.SubscribeTextBox.Name = "SubscribeTextBox";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
             // 
-            // lblStatusA
-            // 
-            resources.ApplyResources(this.lblStatusA, "lblStatusA");
-            this.lblStatusA.Name = "lblStatusA";
-            // 
-            // button11
-            // 
-            resources.ApplyResources(this.button11, "button11");
-            this.button11.Name = "button11";
-            this.button11.UseVisualStyleBackColor = true;
-            this.button11.Click += new System.EventHandler(this.Send);
-            // 
-            // comboBoxParent
-            // 
-            this.comboBoxParent.FormattingEnabled = true;
-            resources.ApplyResources(this.comboBoxParent, "comboBoxParent");
-            this.comboBoxParent.Name = "comboBoxParent";
-            // 
             // label3
             // 
             resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
             // 
-            // richTextBoxShowApp
+            // listBoxApps
             // 
-            resources.ApplyResources(this.richTextBoxShowApp, "richTextBoxShowApp");
-            this.richTextBoxShowApp.Name = "richTextBoxShowApp";
+            resources.ApplyResources(this.listBoxApps, "listBoxApps");
+            this.listBoxApps.ContextMenuStrip = this.contextMenuStripApp;
+            this.listBoxApps.FormattingEnabled = true;
+            this.listBoxApps.Name = "listBoxApps";
+            this.listBoxApps.SelectedIndexChanged += new System.EventHandler(this.listBoxApps_SelectedIndexChanged);
             // 
-            // label4
+            // contextMenuStripApp
             // 
-            resources.ApplyResources(this.label4, "label4");
-            this.label4.Name = "label4";
+            this.contextMenuStripApp.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.refreshToolStripMenuItem,
+            this.editToolStripMenuItem,
+            this.deleteToolStripMenuItem});
+            this.contextMenuStripApp.Name = "contextMenuStripApp";
+            resources.ApplyResources(this.contextMenuStripApp, "contextMenuStripApp");
             // 
-            // textBoxContainerName
+            // refreshToolStripMenuItem
             // 
-            resources.ApplyResources(this.textBoxContainerName, "textBoxContainerName");
-            this.textBoxContainerName.Name = "textBoxContainerName";
+            this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
+            resources.ApplyResources(this.refreshToolStripMenuItem, "refreshToolStripMenuItem");
+            this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
             // 
-            // label5
+            // editToolStripMenuItem
             // 
-            resources.ApplyResources(this.label5, "label5");
-            this.label5.Name = "label5";
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            resources.ApplyResources(this.editToolStripMenuItem, "editToolStripMenuItem");
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
-            // textBoxUpdateNameApp
+            // deleteToolStripMenuItem
             // 
-            resources.ApplyResources(this.textBoxUpdateNameApp, "textBoxUpdateNameApp");
-            this.textBoxUpdateNameApp.Name = "textBoxUpdateNameApp";
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            resources.ApplyResources(this.deleteToolStripMenuItem, "deleteToolStripMenuItem");
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
-            // label6
+            // buttonCreateApps
             // 
-            resources.ApplyResources(this.label6, "label6");
-            this.label6.Name = "label6";
+            resources.ApplyResources(this.buttonCreateApps, "buttonCreateApps");
+            this.buttonCreateApps.Name = "buttonCreateApps";
+            this.buttonCreateApps.UseVisualStyleBackColor = true;
+            this.buttonCreateApps.Click += new System.EventHandler(this.buttonCreateApps_Click);
             // 
-            // textBoxUpdateNameContainer
+            // statusStrip1
             // 
-            resources.ApplyResources(this.textBoxUpdateNameContainer, "textBoxUpdateNameContainer");
-            this.textBoxUpdateNameContainer.Name = "textBoxUpdateNameContainer";
-            this.textBoxUpdateNameContainer.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripProgressBar1,
+            this.toolStripStatusLabel1});
+            resources.ApplyResources(this.statusStrip1, "statusStrip1");
+            this.statusStrip1.Name = "statusStrip1";
             // 
-            // UpdateContainer
+            // toolStripProgressBar1
             // 
-            resources.ApplyResources(this.UpdateContainer, "UpdateContainer");
-            this.UpdateContainer.Name = "UpdateContainer";
-            this.UpdateContainer.UseVisualStyleBackColor = true;
-            this.UpdateContainer.Click += new System.EventHandler(this.UpdateContainer_Click);
+            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
+            resources.ApplyResources(this.toolStripProgressBar1, "toolStripProgressBar1");
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            resources.ApplyResources(this.toolStripStatusLabel1, "toolStripStatusLabel1");
+            // 
+            // listBoxContainers
+            // 
+            resources.ApplyResources(this.listBoxContainers, "listBoxContainers");
+            this.listBoxContainers.ContextMenuStrip = this.contextMenuStripContainer;
+            this.listBoxContainers.FormattingEnabled = true;
+            this.listBoxContainers.Name = "listBoxContainers";
+            this.listBoxContainers.SelectedIndexChanged += new System.EventHandler(this.listBoxContainers_SelectedIndexChanged);
+            // 
+            // buttonCreateContainer
+            // 
+            resources.ApplyResources(this.buttonCreateContainer, "buttonCreateContainer");
+            this.buttonCreateContainer.Name = "buttonCreateContainer";
+            this.buttonCreateContainer.UseVisualStyleBackColor = true;
+            this.buttonCreateContainer.Click += new System.EventHandler(this.buttonCreateContainer_Click);
+            // 
+            // listBoxSubscriptions
+            // 
+            resources.ApplyResources(this.listBoxSubscriptions, "listBoxSubscriptions");
+            this.listBoxSubscriptions.FormattingEnabled = true;
+            this.listBoxSubscriptions.Name = "listBoxSubscriptions";
+            // 
+            // buttonCreateSubscription
+            // 
+            resources.ApplyResources(this.buttonCreateSubscription, "buttonCreateSubscription");
+            this.buttonCreateSubscription.Name = "buttonCreateSubscription";
+            this.buttonCreateSubscription.UseVisualStyleBackColor = true;
+            // 
+            // contextMenuStripContainer
+            // 
+            this.contextMenuStripContainer.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.refreshToolStripMenuItem1,
+            this.editToolStripMenuItem1,
+            this.deleteToolStripMenuItem1});
+            this.contextMenuStripContainer.Name = "contextMenuStripContainer";
+            resources.ApplyResources(this.contextMenuStripContainer, "contextMenuStripContainer");
+            this.contextMenuStripContainer.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripContainer_Opening);
+            // 
+            // refreshToolStripMenuItem1
+            // 
+            this.refreshToolStripMenuItem1.Name = "refreshToolStripMenuItem1";
+            resources.ApplyResources(this.refreshToolStripMenuItem1, "refreshToolStripMenuItem1");
+            this.refreshToolStripMenuItem1.Click += new System.EventHandler(this.refreshToolStripMenuItem1_Click);
+            // 
+            // editToolStripMenuItem1
+            // 
+            this.editToolStripMenuItem1.Name = "editToolStripMenuItem1";
+            resources.ApplyResources(this.editToolStripMenuItem1, "editToolStripMenuItem1");
+            this.editToolStripMenuItem1.Click += new System.EventHandler(this.editToolStripMenuItem1_Click);
+            // 
+            // deleteToolStripMenuItem1
+            // 
+            this.deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
+            resources.ApplyResources(this.deleteToolStripMenuItem1, "deleteToolStripMenuItem1");
+            this.deleteToolStripMenuItem1.Click += new System.EventHandler(this.deleteToolStripMenuItem1_Click);
             // 
             // ClientA
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.UpdateContainer);
-            this.Controls.Add(this.textBoxUpdateNameContainer);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBoxUpdateNameApp);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBoxContainerName);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.richTextBoxShowApp);
+            this.Controls.Add(this.buttonCreateSubscription);
+            this.Controls.Add(this.listBoxSubscriptions);
+            this.Controls.Add(this.buttonCreateContainer);
+            this.Controls.Add(this.listBoxContainers);
+            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.buttonCreateApps);
+            this.Controls.Add(this.listBoxApps);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.comboBoxParent);
-            this.Controls.Add(this.button11);
-            this.Controls.Add(this.lblStatusA);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.SubscribeTextBox);
-            this.Controls.Add(this.button10);
-            this.Controls.Add(this.lblStatus);
-            this.Controls.Add(this.button9);
-            this.Controls.Add(this.richTextShowContainer);
-            this.Controls.Add(this.button8);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(button2);
-            this.Controls.Add(this.textBoxAppName);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
             this.Name = "ClientA";
             this.Load += new System.EventHandler(this.ClientA_Load);
+            this.contextMenuStripApp.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
+            this.contextMenuStripContainer.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -258,32 +213,26 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBoxAppName;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.RichTextBox richTextShowContainer;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Label lblStatus;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.TextBox SubscribeTextBox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lblStatusA;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.ComboBox comboBoxParent;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.RichTextBox richTextBoxShowApp;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBoxContainerName;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBoxUpdateNameApp;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBoxUpdateNameContainer;
-        private System.Windows.Forms.Button UpdateContainer;
+        private System.Windows.Forms.ListBox listBoxApps;
+        private System.Windows.Forms.Button buttonCreateApps;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ListBox listBoxContainers;
+        private System.Windows.Forms.Button buttonCreateContainer;
+        private System.Windows.Forms.ListBox listBoxSubscriptions;
+        private System.Windows.Forms.Button buttonCreateSubscription;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripApp;
+        private System.Windows.Forms.ToolStripMenuItem refreshToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripContainer;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem refreshToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem1;
     }
 }
 
