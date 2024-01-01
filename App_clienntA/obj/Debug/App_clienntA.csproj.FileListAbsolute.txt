@@ -26,3 +26,5 @@ C:\Users\gpcfr\source\repos\ProjetoV2\ISProject\App_clienntA\obj\Debug\App_clien
 C:\Users\gpcfr\source\repos\ProjetoV2\ISProject\App_clienntA\obj\Debug\App_clienntA.exe
 C:\Users\gpcfr\source\repos\ProjetoV2\ISProject\App_clienntA\obj\Debug\App_clienntA.pdb
 C:\Users\gpcfr\source\repos\ProjetoV2\ISProject\App_clienntA\obj\Debug\App_clienntA.FormContainers.resources
+C:\Users\gpcfr\source\repos\ProjetoV2\ISProject\App_clienntA\obj\Debug\App_clienntA.FormSubscriptions.resources
+C:\Users\gpcfr\source\repos\ProjetoV2\ISProject\App_clienntA\obj\Debug\App_clienntA.FormDatas.resources

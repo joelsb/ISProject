@@ -43,23 +43,33 @@
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.listBoxContainers = new System.Windows.Forms.ListBox();
-            this.buttonCreateContainer = new System.Windows.Forms.Button();
-            this.listBoxSubscriptions = new System.Windows.Forms.ListBox();
-            this.buttonCreateSubscription = new System.Windows.Forms.Button();
             this.contextMenuStripContainer = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.refreshToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonCreateContainer = new System.Windows.Forms.Button();
+            this.listBoxSubscriptions = new System.Windows.Forms.ListBox();
+            this.buttonCreateSubscription = new System.Windows.Forms.Button();
+            this.labelData = new System.Windows.Forms.Label();
+            this.listBoxData = new System.Windows.Forms.ListBox();
+            this.buttonData = new System.Windows.Forms.Button();
+            this.contextMenuStripSubscription = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.refreshToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStripData = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.refreshToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripApp.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.contextMenuStripContainer.SuspendLayout();
+            this.contextMenuStripSubscription.SuspendLayout();
+            this.contextMenuStripData.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -139,25 +149,6 @@
             this.listBoxContainers.Name = "listBoxContainers";
             this.listBoxContainers.SelectedIndexChanged += new System.EventHandler(this.listBoxContainers_SelectedIndexChanged);
             // 
-            // buttonCreateContainer
-            // 
-            resources.ApplyResources(this.buttonCreateContainer, "buttonCreateContainer");
-            this.buttonCreateContainer.Name = "buttonCreateContainer";
-            this.buttonCreateContainer.UseVisualStyleBackColor = true;
-            this.buttonCreateContainer.Click += new System.EventHandler(this.buttonCreateContainer_Click);
-            // 
-            // listBoxSubscriptions
-            // 
-            resources.ApplyResources(this.listBoxSubscriptions, "listBoxSubscriptions");
-            this.listBoxSubscriptions.FormattingEnabled = true;
-            this.listBoxSubscriptions.Name = "listBoxSubscriptions";
-            // 
-            // buttonCreateSubscription
-            // 
-            resources.ApplyResources(this.buttonCreateSubscription, "buttonCreateSubscription");
-            this.buttonCreateSubscription.Name = "buttonCreateSubscription";
-            this.buttonCreateSubscription.UseVisualStyleBackColor = true;
-            // 
             // contextMenuStripContainer
             // 
             this.contextMenuStripContainer.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -166,7 +157,6 @@
             this.deleteToolStripMenuItem1});
             this.contextMenuStripContainer.Name = "contextMenuStripContainer";
             resources.ApplyResources(this.contextMenuStripContainer, "contextMenuStripContainer");
-            this.contextMenuStripContainer.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripContainer_Opening);
             // 
             // refreshToolStripMenuItem1
             // 
@@ -186,10 +176,93 @@
             resources.ApplyResources(this.deleteToolStripMenuItem1, "deleteToolStripMenuItem1");
             this.deleteToolStripMenuItem1.Click += new System.EventHandler(this.deleteToolStripMenuItem1_Click);
             // 
+            // buttonCreateContainer
+            // 
+            resources.ApplyResources(this.buttonCreateContainer, "buttonCreateContainer");
+            this.buttonCreateContainer.Name = "buttonCreateContainer";
+            this.buttonCreateContainer.UseVisualStyleBackColor = true;
+            this.buttonCreateContainer.Click += new System.EventHandler(this.buttonCreateContainer_Click);
+            // 
+            // listBoxSubscriptions
+            // 
+            resources.ApplyResources(this.listBoxSubscriptions, "listBoxSubscriptions");
+            this.listBoxSubscriptions.ContextMenuStrip = this.contextMenuStripSubscription;
+            this.listBoxSubscriptions.FormattingEnabled = true;
+            this.listBoxSubscriptions.Name = "listBoxSubscriptions";
+            // 
+            // buttonCreateSubscription
+            // 
+            resources.ApplyResources(this.buttonCreateSubscription, "buttonCreateSubscription");
+            this.buttonCreateSubscription.Name = "buttonCreateSubscription";
+            this.buttonCreateSubscription.UseVisualStyleBackColor = true;
+            this.buttonCreateSubscription.Click += new System.EventHandler(this.buttonCreateSubscription_Click);
+            // 
+            // labelData
+            // 
+            resources.ApplyResources(this.labelData, "labelData");
+            this.labelData.Name = "labelData";
+            // 
+            // listBoxData
+            // 
+            resources.ApplyResources(this.listBoxData, "listBoxData");
+            this.listBoxData.ContextMenuStrip = this.contextMenuStripData;
+            this.listBoxData.FormattingEnabled = true;
+            this.listBoxData.Name = "listBoxData";
+            // 
+            // buttonData
+            // 
+            resources.ApplyResources(this.buttonData, "buttonData");
+            this.buttonData.Name = "buttonData";
+            this.buttonData.UseVisualStyleBackColor = true;
+            this.buttonData.Click += new System.EventHandler(this.buttonData_Click);
+            // 
+            // contextMenuStripSubscription
+            // 
+            this.contextMenuStripSubscription.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.refreshToolStripMenuItem2,
+            this.deleteToolStripMenuItem2});
+            this.contextMenuStripSubscription.Name = "contextMenuStripSubscription";
+            resources.ApplyResources(this.contextMenuStripSubscription, "contextMenuStripSubscription");
+            // 
+            // refreshToolStripMenuItem2
+            // 
+            this.refreshToolStripMenuItem2.Name = "refreshToolStripMenuItem2";
+            resources.ApplyResources(this.refreshToolStripMenuItem2, "refreshToolStripMenuItem2");
+            this.refreshToolStripMenuItem2.Click += new System.EventHandler(this.refreshToolStripMenuItem2_Click);
+            // 
+            // deleteToolStripMenuItem2
+            // 
+            this.deleteToolStripMenuItem2.Name = "deleteToolStripMenuItem2";
+            resources.ApplyResources(this.deleteToolStripMenuItem2, "deleteToolStripMenuItem2");
+            this.deleteToolStripMenuItem2.Click += new System.EventHandler(this.deleteToolStripMenuItem2_Click);
+            // 
+            // contextMenuStripData
+            // 
+            this.contextMenuStripData.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.refreshToolStripMenuItem3,
+            this.deleteToolStripMenuItem3});
+            this.contextMenuStripData.Name = "contextMenuStripData";
+            resources.ApplyResources(this.contextMenuStripData, "contextMenuStripData");
+            // 
+            // refreshToolStripMenuItem3
+            // 
+            this.refreshToolStripMenuItem3.Name = "refreshToolStripMenuItem3";
+            resources.ApplyResources(this.refreshToolStripMenuItem3, "refreshToolStripMenuItem3");
+            this.refreshToolStripMenuItem3.Click += new System.EventHandler(this.refreshToolStripMenuItem3_Click);
+            // 
+            // deleteToolStripMenuItem3
+            // 
+            this.deleteToolStripMenuItem3.Name = "deleteToolStripMenuItem3";
+            resources.ApplyResources(this.deleteToolStripMenuItem3, "deleteToolStripMenuItem3");
+            this.deleteToolStripMenuItem3.Click += new System.EventHandler(this.deleteToolStripMenuItem3_Click);
+            // 
             // ClientA
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.buttonData);
+            this.Controls.Add(this.listBoxData);
+            this.Controls.Add(this.labelData);
             this.Controls.Add(this.buttonCreateSubscription);
             this.Controls.Add(this.listBoxSubscriptions);
             this.Controls.Add(this.buttonCreateContainer);
@@ -206,6 +279,8 @@
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.contextMenuStripContainer.ResumeLayout(false);
+            this.contextMenuStripSubscription.ResumeLayout(false);
+            this.contextMenuStripData.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -233,6 +308,15 @@
         private System.Windows.Forms.ToolStripMenuItem refreshToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem1;
+        private System.Windows.Forms.Label labelData;
+        private System.Windows.Forms.ListBox listBoxData;
+        private System.Windows.Forms.Button buttonData;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripSubscription;
+        private System.Windows.Forms.ToolStripMenuItem refreshToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem2;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripData;
+        private System.Windows.Forms.ToolStripMenuItem refreshToolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem3;
     }
 }
 

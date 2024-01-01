@@ -126,7 +126,7 @@
     <value>Microsoft Sans Serif, 18pt</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>130, 47</value>
+    <value>121, 9</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>68, 29</value>
@@ -147,7 +147,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>16</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -160,7 +160,7 @@
     <value>NoControl</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>436, 47</value>
+    <value>438, 9</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>117, 29</value>
@@ -181,7 +181,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>15</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -193,7 +193,7 @@
     <value>NoControl</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>742, 47</value>
+    <value>744, 9</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>147, 29</value>
@@ -214,7 +214,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>14</value>
   </data>
   <data name="listBoxApps.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left</value>
@@ -232,10 +232,10 @@
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="listBoxApps.Location" type="System.Drawing.Point, System.Drawing">
-    <value>44, 102</value>
+    <value>44, 41</value>
   </data>
   <data name="listBoxApps.Size" type="System.Drawing.Size, System.Drawing">
-    <value>227, 407</value>
+    <value>227, 472</value>
   </data>
   <data name="listBoxApps.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -250,7 +250,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;listBoxApps.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>13</value>
   </data>
   <data name="refreshToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>113, 22</value>
@@ -295,7 +295,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;buttonCreateApps.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>12</value>
   </data>
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -322,7 +322,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;statusStrip1.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>11</value>
   </data>
   <data name="toolStripProgressBar1.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 16</value>
@@ -339,26 +339,8 @@
   <metadata name="contextMenuStripContainer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>303, 17</value>
   </metadata>
-  <data name="refreshToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
-  </data>
-  <data name="refreshToolStripMenuItem1.Text" xml:space="preserve">
-    <value>Refresh</value>
-  </data>
-  <data name="editToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
-  </data>
-  <data name="editToolStripMenuItem1.Text" xml:space="preserve">
-    <value>Edit</value>
-  </data>
-  <data name="deleteToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
-  </data>
-  <data name="deleteToolStripMenuItem1.Text" xml:space="preserve">
-    <value>Delete</value>
-  </data>
   <data name="contextMenuStripContainer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 92</value>
+    <value>114, 70</value>
   </data>
   <data name="&gt;&gt;contextMenuStripContainer.Name" xml:space="preserve">
     <value>contextMenuStripContainer</value>
@@ -367,10 +349,10 @@
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="listBoxContainers.Location" type="System.Drawing.Point, System.Drawing">
-    <value>365, 102</value>
+    <value>365, 41</value>
   </data>
   <data name="listBoxContainers.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 407</value>
+    <value>240, 472</value>
   </data>
   <data name="listBoxContainers.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -385,7 +367,25 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;listBoxContainers.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>10</value>
+  </data>
+  <data name="refreshToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>113, 22</value>
+  </data>
+  <data name="refreshToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="editToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>113, 22</value>
+  </data>
+  <data name="editToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="deleteToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>113, 22</value>
+  </data>
+  <data name="deleteToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Delete</value>
   </data>
   <data name="buttonCreateContainer.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -415,16 +415,28 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;buttonCreateContainer.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>9</value>
   </data>
   <data name="listBoxSubscriptions.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left</value>
   </data>
+  <metadata name="contextMenuStripSubscription.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>504, 17</value>
+  </metadata>
+  <data name="contextMenuStripSubscription.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 48</value>
+  </data>
+  <data name="&gt;&gt;contextMenuStripSubscription.Name" xml:space="preserve">
+    <value>contextMenuStripSubscription</value>
+  </data>
+  <data name="&gt;&gt;contextMenuStripSubscription.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="listBoxSubscriptions.Location" type="System.Drawing.Point, System.Drawing">
-    <value>698, 102</value>
+    <value>698, 41</value>
   </data>
   <data name="listBoxSubscriptions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 407</value>
+    <value>240, 212</value>
   </data>
   <data name="listBoxSubscriptions.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -439,7 +451,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;listBoxSubscriptions.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>8</value>
   </data>
   <data name="buttonCreateSubscription.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -448,7 +460,7 @@
     <value>NoControl</value>
   </data>
   <data name="buttonCreateSubscription.Location" type="System.Drawing.Point, System.Drawing">
-    <value>698, 541</value>
+    <value>698, 259</value>
   </data>
   <data name="buttonCreateSubscription.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 30</value>
@@ -469,7 +481,130 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;buttonCreateSubscription.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>7</value>
+  </data>
+  <data name="labelData.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="labelData.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 18pt</value>
+  </data>
+  <data name="labelData.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="labelData.Location" type="System.Drawing.Point, System.Drawing">
+    <value>786, 292</value>
+  </data>
+  <data name="labelData.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 29</value>
+  </data>
+  <data name="labelData.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="labelData.Text" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="&gt;&gt;labelData.Name" xml:space="preserve">
+    <value>labelData</value>
+  </data>
+  <data name="&gt;&gt;labelData.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;labelData.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;labelData.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="listBoxData.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
+  </data>
+  <metadata name="contextMenuStripData.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>719, 17</value>
+  </metadata>
+  <data name="refreshToolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
+  <data name="refreshToolStripMenuItem3.Text" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="deleteToolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
+  <data name="deleteToolStripMenuItem3.Text" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="contextMenuStripData.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 48</value>
+  </data>
+  <data name="&gt;&gt;contextMenuStripData.Name" xml:space="preserve">
+    <value>contextMenuStripData</value>
+  </data>
+  <data name="&gt;&gt;contextMenuStripData.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="listBoxData.Location" type="System.Drawing.Point, System.Drawing">
+    <value>698, 324</value>
+  </data>
+  <data name="listBoxData.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 186</value>
+  </data>
+  <data name="listBoxData.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;listBoxData.Name" xml:space="preserve">
+    <value>listBoxData</value>
+  </data>
+  <data name="&gt;&gt;listBoxData.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;listBoxData.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;listBoxData.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="buttonData.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="buttonData.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="buttonData.Location" type="System.Drawing.Point, System.Drawing">
+    <value>698, 539</value>
+  </data>
+  <data name="buttonData.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 30</value>
+  </data>
+  <data name="buttonData.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="buttonData.Text" xml:space="preserve">
+    <value>Create Data</value>
+  </data>
+  <data name="&gt;&gt;buttonData.Name" xml:space="preserve">
+    <value>buttonData</value>
+  </data>
+  <data name="&gt;&gt;buttonData.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;buttonData.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;buttonData.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="refreshToolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>113, 22</value>
+  </data>
+  <data name="refreshToolStripMenuItem2.Text" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="deleteToolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>113, 22</value>
+  </data>
+  <data name="deleteToolStripMenuItem2.Text" xml:space="preserve">
+    <value>Delete</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -532,6 +667,30 @@
     <value>deleteToolStripMenuItem1</value>
   </data>
   <data name="&gt;&gt;deleteToolStripMenuItem1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;refreshToolStripMenuItem2.Name" xml:space="preserve">
+    <value>refreshToolStripMenuItem2</value>
+  </data>
+  <data name="&gt;&gt;refreshToolStripMenuItem2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;deleteToolStripMenuItem2.Name" xml:space="preserve">
+    <value>deleteToolStripMenuItem2</value>
+  </data>
+  <data name="&gt;&gt;deleteToolStripMenuItem2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;refreshToolStripMenuItem3.Name" xml:space="preserve">
+    <value>refreshToolStripMenuItem3</value>
+  </data>
+  <data name="&gt;&gt;refreshToolStripMenuItem3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;deleteToolStripMenuItem3.Name" xml:space="preserve">
+    <value>deleteToolStripMenuItem3</value>
+  </data>
+  <data name="&gt;&gt;deleteToolStripMenuItem3.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
