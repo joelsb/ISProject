@@ -59,7 +59,11 @@ namespace App_clienntA
             {
                 Name = newName,
             };
-
+            if (appUpdate.Name == "Switch")
+            {
+                MessageBox.Show("Error: Application name can not be Switch ");
+                return;
+            }
             bool isValidText = !string.IsNullOrEmpty(newName) && char.IsLetter(newName[0]);
             // Check if app is null (this should not happen based on the above initialization)
             if (!isValidText)
@@ -80,6 +84,11 @@ namespace App_clienntA
 
             bool isValidText = !string.IsNullOrEmpty(newName) && char.IsLetter(newName[0]);
             // Check if app is null (this should not happen based on the above initialization)
+            if (app.Name== "Switch")
+            {
+                MessageBox.Show("Error: Application name can not be Switch ");
+                return;
+            }
             if (!isValidText)
             {
                 // Log or display an error message

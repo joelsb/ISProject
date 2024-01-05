@@ -1,0 +1,58 @@
+C:\Users\gpcfr\source\repos\ProjetoV2\ISProject\ClientB\bin\Debug\App_Data\DBSomiod.mdf
+C:\Users\gpcfr\source\repos\ProjetoV2\ISProject\ClientB\bin\Debug\App_Data\DBSomiod_log.ldf
+C:\Users\gpcfr\source\repos\ProjetoV2\ISProject\ClientB\bin\Debug\ClientB.exe.config
+C:\Users\gpcfr\source\repos\ProjetoV2\ISProject\ClientB\bin\Debug\ClientB.exe
+C:\Users\gpcfr\source\repos\ProjetoV2\ISProject\ClientB\bin\Debug\ClientB.pdb
+C:\Users\gpcfr\source\repos\ProjetoV2\ISProject\ClientB\bin\Debug\App_clienntA.exe
+C:\Users\gpcfr\source\repos\ProjetoV2\ISProject\ClientB\bin\Debug\M2Mqtt.Net.dll
+C:\Users\gpcfr\source\repos\ProjetoV2\ISProject\ClientB\bin\Debug\Somiod.dll
+C:\Users\gpcfr\source\repos\ProjetoV2\ISProject\ClientB\bin\Debug\System.Web.Http.dll
+C:\Users\gpcfr\source\repos\ProjetoV2\ISProject\ClientB\bin\Debug\System.Web.Http.WebHost.dll
+C:\Users\gpcfr\source\repos\ProjetoV2\ISProject\ClientB\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\gpcfr\source\repos\ProjetoV2\ISProject\ClientB\bin\Debug\App_clienntA.pdb
+C:\Users\gpcfr\source\repos\ProjetoV2\ISProject\ClientB\bin\Debug\App_clienntA.exe.config
+C:\Users\gpcfr\source\repos\ProjetoV2\ISProject\ClientB\bin\Debug\Somiod.pdb
+C:\Users\gpcfr\source\repos\ProjetoV2\ISProject\ClientB\bin\Debug\Somiod.dll.config
+C:\Users\gpcfr\source\repos\ProjetoV2\ISProject\ClientB\bin\Debug\M2Mqtt.Net.pdb
+C:\Users\gpcfr\source\repos\ProjetoV2\ISProject\ClientB\bin\Debug\System.Web.Http.xml
+C:\Users\gpcfr\source\repos\ProjetoV2\ISProject\ClientB\bin\Debug\System.Web.Http.WebHost.xml
+C:\Users\gpcfr\source\repos\ProjetoV2\ISProject\ClientB\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\gpcfr\source\repos\ProjetoV2\ISProject\ClientB\obj\Debug\App_clientB.csproj.AssemblyReference.cache
+C:\Users\gpcfr\source\repos\ProjetoV2\ISProject\ClientB\obj\Debug\ClientB.ClientB.resources
+C:\Users\gpcfr\source\repos\ProjetoV2\ISProject\ClientB\obj\Debug\ClientB.Properties.Resources.resources
+C:\Users\gpcfr\source\repos\ProjetoV2\ISProject\ClientB\obj\Debug\App_clientB.csproj.GenerateResource.cache
+C:\Users\gpcfr\source\repos\ProjetoV2\ISProject\ClientB\obj\Debug\App_clientB.csproj.CoreCompileInputs.cache
+C:\Users\gpcfr\source\repos\ProjetoV2\ISProject\ClientB\obj\Debug\App_clientB.csproj.CopyComplete
+C:\Users\gpcfr\source\repos\ProjetoV2\ISProject\ClientB\obj\Debug\ClientB.exe
+C:\Users\gpcfr\source\repos\ProjetoV2\ISProject\ClientB\obj\Debug\ClientB.pdb
+C:\Users\gpcfr\source\repos\ProjetoV2\Nova pasta (2)\ISProject\ISProject\ClientB\bin\Debug\App_Data\DBSomiod.mdf
+C:\Users\gpcfr\source\repos\ProjetoV2\Nova pasta (2)\ISProject\ISProject\ClientB\bin\Debug\App_Data\DBSomiod_log.ldf
+C:\Users\gpcfr\source\repos\ProjetoV2\Nova pasta (2)\ISProject\ISProject\ClientB\bin\Debug\ClientB.exe.config
+C:\Users\gpcfr\source\repos\ProjetoV2\Nova pasta (2)\ISProject\ISProject\ClientB\bin\Debug\ClientB.exe
+C:\Users\gpcfr\source\repos\ProjetoV2\Nova pasta (2)\ISProject\ISProject\ClientB\bin\Debug\ClientB.pdb
+C:\Users\gpcfr\source\repos\ProjetoV2\Nova pasta (2)\ISProject\ISProject\ClientB\bin\Debug\App_clienntA.exe
+C:\Users\gpcfr\source\repos\ProjetoV2\Nova pasta (2)\ISProject\ISProject\ClientB\bin\Debug\Somiod.dll
+C:\Users\gpcfr\source\repos\ProjetoV2\Nova pasta (2)\ISProject\ISProject\ClientB\bin\Debug\System.Web.Http.dll
+C:\Users\gpcfr\source\repos\ProjetoV2\Nova pasta (2)\ISProject\ISProject\ClientB\bin\Debug\System.Web.Http.WebHost.dll
+C:\Users\gpcfr\source\repos\ProjetoV2\Nova pasta (2)\ISProject\ISProject\ClientB\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\gpcfr\source\repos\ProjetoV2\Nova pasta (2)\ISProject\ISProject\ClientB\bin\Debug\App_clienntA.pdb
+C:\Users\gpcfr\source\repos\ProjetoV2\Nova pasta (2)\ISProject\ISProject\ClientB\bin\Debug\App_clienntA.exe.config
+C:\Users\gpcfr\source\repos\ProjetoV2\Nova pasta (2)\ISProject\ISProject\ClientB\bin\Debug\Somiod.pdb
+C:\Users\gpcfr\source\repos\ProjetoV2\Nova pasta (2)\ISProject\ISProject\ClientB\bin\Debug\Somiod.dll.config
+C:\Users\gpcfr\source\repos\ProjetoV2\Nova pasta (2)\ISProject\ISProject\ClientB\bin\Debug\M2Mqtt.Net.pdb
+C:\Users\gpcfr\source\repos\ProjetoV2\Nova pasta (2)\ISProject\ISProject\ClientB\bin\Debug\System.Web.Http.xml
+C:\Users\gpcfr\source\repos\ProjetoV2\Nova pasta (2)\ISProject\ISProject\ClientB\bin\Debug\System.Web.Http.WebHost.xml
+C:\Users\gpcfr\source\repos\ProjetoV2\Nova pasta (2)\ISProject\ISProject\ClientB\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\gpcfr\source\repos\ProjetoV2\Nova pasta (2)\ISProject\ISProject\ClientB\obj\Debug\App_clientB.csproj.AssemblyReference.cache
+C:\Users\gpcfr\source\repos\ProjetoV2\Nova pasta (2)\ISProject\ISProject\ClientB\obj\Debug\ClientB.ClientB.resources
+C:\Users\gpcfr\source\repos\ProjetoV2\Nova pasta (2)\ISProject\ISProject\ClientB\obj\Debug\ClientB.Properties.Resources.resources
+C:\Users\gpcfr\source\repos\ProjetoV2\Nova pasta (2)\ISProject\ISProject\ClientB\obj\Debug\App_clientB.csproj.GenerateResource.cache
+C:\Users\gpcfr\source\repos\ProjetoV2\Nova pasta (2)\ISProject\ISProject\ClientB\obj\Debug\App_clientB.csproj.CoreCompileInputs.cache
+C:\Users\gpcfr\source\repos\ProjetoV2\Nova pasta (2)\ISProject\ISProject\ClientB\obj\Debug\App_clientB.csproj.CopyComplete
+C:\Users\gpcfr\source\repos\ProjetoV2\Nova pasta (2)\ISProject\ISProject\ClientB\obj\Debug\ClientB.exe
+C:\Users\gpcfr\source\repos\ProjetoV2\Nova pasta (2)\ISProject\ISProject\ClientB\obj\Debug\ClientB.pdb
+C:\Users\gpcfr\source\repos\ProjetoV2\Nova pasta (2)\ISProject\ISProject\ClientB\bin\Debug\WebActivatorEx.dll
+C:\Users\gpcfr\source\repos\ProjetoV2\Nova pasta (2)\ISProject\ISProject\ClientB\bin\Debug\Swashbuckle.Core.dll
+C:\Users\gpcfr\source\repos\ProjetoV2\Nova pasta (2)\ISProject\ISProject\ClientB\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\gpcfr\source\repos\ProjetoV2\Nova pasta (2)\ISProject\ISProject\ClientB\bin\Debug\Newtonsoft.Json.dll
+C:\Users\gpcfr\source\repos\ProjetoV2\Nova pasta (2)\ISProject\ISProject\ClientB\bin\Debug\Newtonsoft.Json.xml

@@ -57,7 +57,11 @@ namespace App_clienntA
             {
                 Name = newName,
             };
-
+            if (container.Name == "Switch")
+            {
+                MessageBox.Show("Error: Container name can not be Switch ");
+                return;
+            }
             bool isValidText = !string.IsNullOrEmpty(newName) && char.IsLetter(newName[0]);
             // Check if app is null (this should not happen based on the above initialization)
             if (!isValidText)
@@ -75,7 +79,11 @@ namespace App_clienntA
             {
                Name = newName
             };
-
+            if (container.Name == "Switch")
+            {
+                MessageBox.Show("Error: Container name can not be Switch ");
+                return;
+            }
             bool isValidText = !string.IsNullOrEmpty(newName) && char.IsLetter(newName[0]);
             // Check if app is null (this should not happen based on the above initialization)
             if (!isValidText)

@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Somiod.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Serialization;
@@ -17,7 +20,35 @@ public class Network
     }
     public static XmlDocument POST(string url, object model)
     {
-        return request(url, "POST", model);
+        if (model == null)
+        {
+            return null;
+        }
+        if (model is Subscription subscription)
+        {
+            subscription.CreationDt = DateTime.MinValue;
+        }
+        // Create a StringBuilder to store the XML string
+        StringBuilder xmlStringBuilder = new StringBuilder();
+
+        // Create an XmlWriter with the desired formatting options
+        using (XmlWriter xmlWriter = XmlWriter.Create(xmlStringBuilder, new XmlWriterSettings
+        {
+            Indent = true,  // Enable indentation
+            OmitXmlDeclaration = false,  // Include XML declaration
+            Encoding = Encoding.UTF8  // Specify encoding
+        }))
+        {
+            // Create an XmlSerializer and serialize the model to the XmlWriter
+            XmlSerializer serializer = new XmlSerializer(model.GetType(), defaultNamespace);
+            serializer.Serialize(xmlWriter, model);
+        }
+
+        // Create an XmlDocument and load it from the XML string
+        XmlDocument xmlDoc = new XmlDocument();
+        xmlDoc.LoadXml(xmlStringBuilder.ToString());
+
+        return request(url, "POST", xmlDoc);
     }
     public static XmlDocument PUT(string url, object model)
     {
@@ -67,9 +98,7 @@ public class Network
                 {
                     XmlDocument xmlDoc = new XmlDocument();
                     xmlDoc.Load(responseStream);
-
                     return xmlDoc;
-
                 }
             }
         }
