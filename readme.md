@@ -150,7 +150,7 @@ DELETE  /api/somiod/{appName}/{containerName}/{subscriptionName}
   Systems Integration
 - **Bachelor’s:**
   Software Engineering
-- **Project Duration:**  
+- **Project Duration:**
   Approximately 3 months
 
 ## 📄 License
