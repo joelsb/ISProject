@@ -129,7 +129,7 @@ DELETE  /api/somiod/{appName}/{containerName}/{subscriptionName}
 
 ## 🏛️ Architecture Diagram
 
-![Architecture Diagram](architecture.png)
+![Architecture Diagram](Images/architecture.png)
 
 
 ## 📅 Project Details
