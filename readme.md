@@ -122,10 +122,19 @@ DELETE  /api/somiod/{appName}/{containerName}/{subscriptionName}
 
 ## 📅 Project Details
 
-- **Developed by:** Gonçalo Francisco, Joel Bastos, Pedro Alfaiate, Tiago Batista, Tiago Cabecinhas
-- **Advisers:** Marisa Maximiano, Nuno Costa, Humberto Ferreira
+- **Developed by:** 
+  - Gonçalo Francisco (Goncalofrancisco), 
+  - Joel Bastos (joelsb9), 
+  - Pedro Alfaiate (pedro-alfaiate22), 
+  - Tiago Batista (tiagobaptista1), 
+  - Tiago Cabecinhas (Tcabecinhas)
+- **Advisers:** 
+  - Marisa Maximiano, 
+  - Nuno Costa, 
+  - Humberto Ferreira
 - **Institution:** Polytechnic of Leiria, Portugal
-- **Course:** Systems Integration (Bachelor’s in Computer Engineering)
+- **Course:** Systems Integration
+- **Bachelor’s:** Computer Engineering
 - **Academic Year:** 2023/2024
 
 
