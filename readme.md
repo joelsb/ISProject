@@ -119,26 +119,6 @@ DELETE  /api/somiod/{appName}/{containerName}/{subscriptionName}
 ```
 
 
-
-## 📅 Project Details
-
-- **Developed by:** 
-  - Gonçalo Francisco (Goncalofrancisco), 
-  - Joel Bastos (joelsb9), 
-  - Pedro Alfaiate (pedro-alfaiate22), 
-  - Tiago Batista (tiagobaptista1), 
-  - Tiago Cabecinhas (Tcabecinhas)
-- **Advisers:** 
-  - Marisa Maximiano, 
-  - Nuno Costa, 
-  - Humberto Ferreira
-- **Institution:** Polytechnic of Leiria, Portugal
-- **Course:** Systems Integration
-- **Bachelor’s:** Computer Engineering
-- **Academic Year:** 2023/2024
-
-
-
 ## 🔮 Future Work
 
 - Support for more device types and protocols.
@@ -152,6 +132,26 @@ DELETE  /api/somiod/{appName}/{containerName}/{subscriptionName}
 ![Architecture Diagram](architecture.png)
 
 
+## 📅 Project Details
+
+- **Developed by:** 
+  - Gonçalo Francisco (Goncalofrancisco), 
+  - Joel Bastos (joelsb9), 
+  - Pedro Alfaiate (pedro-alfaiate22), 
+  - Tiago Batista (tiagobaptista1), 
+  - Tiago Cabecinhas (Tcabecinhas)
+- **Advisers:** 
+  - Marisa Maximiano, 
+  - Nuno Costa, 
+  - Humberto Ferreira
+- **Institution:**
+  Polytechnic of Leiria, Portugal
+- **Course:**
+  Systems Integration
+- **Bachelor’s:**
+  Software Engineering
+- **Project Duration:**  
+  Approximately 3 months
 
 ## 📄 License
 
