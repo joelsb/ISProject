@@ -142,4 +142,6 @@ DELETE  /api/somiod/{appName}/{containerName}/{subscriptionName}
 
 This project is provided for academic purposes. For reuse or adaptation, please credit the authors and institution.
 
+## 🏛️ Architecture Diagram
+
 ![Architecture Diagram](architecture.png)
