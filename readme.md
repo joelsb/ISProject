@@ -3,7 +3,7 @@
 
 **SOMIOD** is a middleware solution designed to address the *"SILO OF THINGS"* challenge in the Internet of Things (IoT) by standardizing data usage across applications. It enables interoperability between devices and systems through a **REST API** and **MQTT message broker**, simplifying IoT integration and development.
 
----
+
 
 ## 📜 Overview
 
@@ -14,7 +14,7 @@ The IoT ecosystem often suffers from fragmentation, where devices cannot easily 
 - Supporting resource creation and subscription-based notifications.
 - Promoting standardization to simplify development and encourage collaboration.
 
----
+
 
 ## 🏗 Architecture
 
@@ -36,7 +36,7 @@ The IoT ecosystem often suffers from fragmentation, where devices cannot easily 
    - Manages real-time communication between applications.
    - Enables publish/subscribe data sharing.
 
----
+
 
 ## 🚀 Features
 
@@ -50,7 +50,7 @@ The IoT ecosystem often suffers from fragmentation, where devices cannot easily 
   - App A acts as a gate receiver.
   - App B sends "open" or "close" commands.
 
----
+
 
 ## 📡 API Endpoints
 
@@ -84,7 +84,7 @@ POST    /api/somiod/{appName}/{containerName}
 DELETE  /api/somiod/{appName}/{containerName}/{subscriptionName}
 ```
 
----
+
 
 ## 📦 Example XML Bodies
 
@@ -118,7 +118,7 @@ DELETE  /api/somiod/{appName}/{containerName}/{subscriptionName}
 </subscription>
 ```
 
----
+
 
 ## 📅 Project Details
 
@@ -128,7 +128,7 @@ DELETE  /api/somiod/{appName}/{containerName}/{subscriptionName}
 - **Course:** Systems Integration (Bachelor’s in Computer Engineering)
 - **Academic Year:** 2023/2024
 
----
+
 
 ## 🔮 Future Work
 
@@ -136,12 +136,14 @@ DELETE  /api/somiod/{appName}/{containerName}/{subscriptionName}
 - Enhanced security mechanisms for data integrity and confidentiality.
 - Broader scalability for larger IoT ecosystems.
 
----
 
-## 📄 License
-
-This project is provided for academic purposes. For reuse or adaptation, please credit the authors and institution.
 
 ## 🏛️ Architecture Diagram
 
 ![Architecture Diagram](architecture.png)
+
+
+
+## 📄 License
+
+This project is provided for academic purposes. For reuse or adaptation, please credit the authors and institution.
