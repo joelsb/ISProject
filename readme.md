@@ -140,18 +140,24 @@ DELETE  /api/somiod/{appName}/{containerName}/{subscriptionName}
   - Pedro Alfaiate (pedro-alfaiate22), 
   - Tiago Batista (tiagobaptista1), 
   - Tiago Cabecinhas (Tcabecinhas)
+  
 - **Advisers:** 
   - Marisa Maximiano, 
   - Nuno Costa, 
   - Humberto Ferreira
+  
 - **Institution:**
   Polytechnic of Leiria, Portugal
+
 - **Course:**
   Systems Integration
+
 - **Bachelor’s:**
   Software Engineering
+
 - **Project Duration:**
   Approximately 3 months
+
 
 ## 📄 License
 
